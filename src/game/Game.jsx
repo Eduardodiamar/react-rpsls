@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import OptionButton from './OptionButton';
+import Rules from './Rules'
 
 const options = [
     { id: 0, name: "Rock", emoji: "🗿", beats: [2, 3] },
@@ -101,6 +102,7 @@ export default function Game() {
     return (
         <div className='flex items-center justify-center h-screen bg-gray-800'>
             <div className="rounded-lg p-4 bg-gray-500">
+                <Rules></Rules>
                 <h1 className="text-3xl mb-4 text-center font-bold">Lets Play</h1>
                 <div className="max-w-md mx-auto">
                     {options.map(option => (
@@ -110,6 +112,7 @@ export default function Game() {
                             handlePlay={handlePlay}
                             disabled={disabled}>
                         </OptionButton>
+                        
                     ))}
                     {userChoice !== null && (
                         <p className="text-xl mt-4">{userMessage}</p>
@@ -119,11 +122,11 @@ export default function Game() {
                     )}
                     {result !== null && (
                         <div className="mt-8">
-                            {result === 0 && <p className='text-xl mt-4'>It's a Draw!</p>}
-                            {result === 1 && (<p className='text-xl mt-4'>
+                            {result === 0 && <p className='text-xl mt-4 text-yellow-500	'>It's a Draw!</p>}
+                            {result === 1 && (<p className='text-xl mt-4 text-lime-500'>
                                 You WON! {options[userChoice]?.name + " " + options[userChoice]?.emoji} beat{" "}  {options[computerChoice]?.emoji + " " + options[computerChoice]?.name}
                             </p>)}
-                            {result === 2 && (<p className='text-xl mt-4'>
+                            {result === 2 && (<p className='text-xl mt-4 text-red-500	'>
                                 You Lose {":("} {options[userChoice]?.name + " " + options[userChoice]?.emoji} is beated by {" "}  {options[computerChoice]?.emoji + " " + options[computerChoice]?.name}
                             </p>)}
                         </div>
